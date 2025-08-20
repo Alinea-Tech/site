@@ -1,78 +1,138 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AlineaTech — Human‑machine collaboration made effective</title>
-  <meta name="description" content="Framework for better human–AI decisions: right technology choices, smoother adoption, engaged teams, and effective investments." />
-  <link rel="icon" href="favicon.png" />
-  <meta property="og:title" content="AlineaTech — Human‑machine collaboration made effective" />
-  <meta property="og:description" content="Research‑based framework to align people and technology for measurable operational gains." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.alineatech.pt/" />
-  <style>
-    :root{
-      color-scheme: dark;
-      --bg:#0f1220; --surface:#151930; --line:#2a2f55; --muted:#aab2d6; --text:#eef1fb; --brand:#86b0ff;
-      --brand-rgb:134,176,255;
-      --radius:16px; --pad:clamp(14px,2.2vw,22px); --max:980px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
-      background:var(--bg);           /* flat background to avoid “bands” */
-      color:var(--text); line-height:1.6;
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-    }
-    a{color:var(--brand); text-decoration:none} a:hover{text-decoration:underline}
-    .wrap{max-width:var(--max); margin:0 auto; padding:calc(var(--pad)*2) var(--pad)}
-    header{display:flex; align-items:center; justify-content:space-between; gap:14px; margin-bottom:28px}
-    .brand{display:flex; align-items:center; gap:10px}
-    .dot{width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg,var(--brand),#cfe0ff)}
-    .name{font-weight:700; letter-spacing:.2px}
-    nav a{color:var(--muted); margin-left:16px} nav a:hover{color:var(--text)}
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AlineaTech — Human‑machine collaboration made effective</title>
+<meta name="description" content="Framework for better human–AI decisions: right technology choices, smoother adoption, engaged teams, and effective investments." />
+<link rel="icon" href="favicon.png" />
+<meta property="og:title" content="AlineaTech — Human‑machine collaboration made effective" />
+<meta property="og:description" content="Research‑based framework to align people and technology for measurable operational gains." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.alineatech.pt/" />
+<style>
+  /* ===== Color tokens (NO alphas, NO mixing) ===== */
+  :root{
+    color-scheme: dark;
+    --bg:        #0f1220;  /* page background */
+    --surface:   #151930;  /* all panels, cards, inputs */
+    --line:      #2a2f55;  /* borders */
+    --text:      #eef1fb;  /* primary text */
+    --muted:     #aab2d6;  /* secondary text */
+    --brand:     #86b0ff;  /* brand accents & buttons */
 
-    /* All panels share identical surface + border */
-    .panel{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:0 10px 40px rgba(0,0,0,.28)}
-    .hero{padding:36px}
+    --radius:16px;
+    --pad:clamp(14px,2.2vw,22px);
+    --max:980px;
+  }
 
-    h1{margin:0 0 8px 0; font-size:clamp(28px,5vw,40px)}
-    .subtitle{color:var(--muted); max-width:75ch; margin:0}
-    .section{margin-top:34px}
-    h2{font-size:22px; margin:0 0 10px 0}
-    .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px}
+  /* ===== Base / reset ===== */
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--bg);   /* flat (no banding, no gradient) */
+    color: var(--text);
+    line-height:1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  img{max-width:100%; display:block}
+  a{color:var(--brand); text-decoration:none}
+  a:hover{text-decoration:underline}
 
-    .card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:16px}
+  .wrap{max-width:var(--max); margin:0 auto; padding:calc(var(--pad)*2) var(--pad)}
 
-    .small{font-size:14px; color:var(--muted)}
-    .tag{
-      display:inline-block; font-size:12px; padding:4px 8px; border-radius:999px;
-      background:rgba(var(--brand-rgb),.12); border:1px solid rgba(var(--brand-rgb),.35); color:#dfe9ff; margin-right:6px
-    }
+  header{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:14px; margin-bottom:28px
+  }
+  .brand{display:flex; align-items:center; gap:10px}
+  .dot{
+    width:28px; height:28px; border-radius:50%;
+    /* simple, flat dot (no gradient) to avoid color fringing */
+    background-color: var(--brand);
+  }
+  .name{font-weight:700; letter-spacing:.2px}
+  nav a{color:var(--muted); margin-left:16px}
+  nav a:hover{color:var(--text)}
 
-    .cta{
-      display:inline-block; margin-top:10px; padding:10px 14px; border-radius:10px;
-      background:var(--brand); color:#0b1125; border:1px solid rgba(var(--brand-rgb),.6); font-weight:600;
-      transition:transform .06s ease, filter .15s ease;
-    }
-    .cta:hover{filter:brightness(1.05)}
-    .cta:active{transform:translateY(1px)}
+  /* ===== Panels (hero, cards, inputs) share EXACT same colors ===== */
+  .panel{
+    background-color: var(--surface);
+    border:1px solid var(--line);
+    border-radius: var(--radius);
+  }
+  .hero{padding:36px}
 
-    form{display:grid; gap:10px; margin-top:10px}
-    input,textarea{
-      width:100%; padding:12px; border-radius:10px;
-      border:1px solid var(--line); background:var(--surface); color:var(--text)
-    }
-    input::placeholder,textarea::placeholder{color:#8e97be}
-    input:focus,textarea:focus{outline:none; box-shadow:0 0 0 2px rgba(var(--brand-rgb),.5)}
-    textarea{min-height:120px; resize:vertical}
-    button{cursor:pointer}
+  h1{margin:0 0 8px 0; font-size:clamp(28px,5vw,40px)}
+  .subtitle{color:var(--muted); max-width:75ch; margin:0}
 
-    footer{margin-top:28px; color:var(--muted); font-size:14px; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap}
-    .note{font-size:12px; color:#94a0ce}
-  </style>
+  .section{margin-top:34px}
+  h2{font-size:22px; margin:0 0 10px 0}
+
+  .cards{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap:16px;
+  }
+  .card{
+    background-color: var(--surface);
+    border:1px solid var(--line);
+    border-radius: var(--radius);
+    padding:16px;
+  }
+
+  .small{font-size:14px; color:var(--muted)}
+  .tag{
+    display:inline-block; font-size:12px; padding:4px 8px; border-radius:999px;
+    background-color:#213055;           /* fixed, opaque */
+    border:1px solid #3b548f;           /* fixed, opaque */
+    color:#dfe9ff; margin-right:6px
+  }
+
+  /* ===== Buttons ===== */
+  .cta{
+    display:inline-block; margin-top:10px; padding:10px 14px; border-radius:10px;
+    background-color: var(--brand); color:#0b1125; border:1px solid #6d9df5; font-weight:600;
+    transition: filter .15s ease, transform .06s ease;
+  }
+  .cta:hover{filter: brightness(1.05)}
+  .cta:active{transform: translateY(1px)}
+  button{cursor:pointer}
+
+  /* ===== Forms (neutralize Chrome autofill yellow) ===== */
+  form{display:grid; gap:10px; margin-top:10px}
+  input, textarea{
+    width:100%; padding:12px; border-radius:10px;
+    border:1px solid var(--line);
+    background-color: var(--surface);
+    color: var(--text);
+  }
+  input::placeholder, textarea::placeholder{color:#8e97be}
+  input:focus, textarea:focus{
+    outline:2px solid #6d9df5; outline-offset:1px;
+  }
+  /* Autofill fix (Chrome/WebKit) — forces surface color */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus{
+    -webkit-text-fill-color: var(--text);
+    -webkit-box-shadow: 0 0 0px 1000px var(--surface) inset !important;
+    box-shadow: 0 0 0px 1000px var(--surface) inset !important;
+    caret-color: var(--text);
+  }
+
+  footer{
+    margin-top:28px; color:var(--muted); font-size:14px;
+    display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap
+  }
+  .note{font-size:12px; color:#94a0ce}
+</style>
 </head>
 <body>
   <div class="wrap">
@@ -167,4 +227,3 @@
   </div>
 </body>
 </html>
-
