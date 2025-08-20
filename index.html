@@ -19,9 +19,10 @@
     html,body{height:100%}
     body{
       margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
-      background: radial-gradient(1200px 700px at 10% -10%, #1a2040, transparent),
-                  radial-gradient(1000px 600px at 100% 0%, #1b274a, transparent),
-                  var(--bg);
+      background:
+        radial-gradient(1200px 700px at 10% -10%, #1a2040, transparent),
+        radial-gradient(1000px 600px at 100% 0%, #1b274a, transparent),
+        var(--bg);
       color:var(--text); line-height:1.6;
     }
     a{color:var(--brand); text-decoration:none} a:hover{text-decoration:underline}
@@ -31,27 +32,57 @@
     .dot{width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg,var(--brand),#bdd3ff)}
     .name{font-weight:700; letter-spacing:.2px}
     nav a{color:var(--muted); margin-left:16px} nav a:hover{color:var(--text)}
-    .hero{background:linear-gradient(180deg,rgba(255,255,255,.04),transparent); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); padding:36px; box-shadow:0 10px 40px rgba(0,0,0,.28)}
+
+    /* Consistent surface for hero/cards */
+    .hero{
+      background:color-mix(in srgb, var(--surface) 60%, transparent);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:36px;
+      box-shadow:0 10px 40px rgba(0,0,0,.28);
+    }
+
     h1{margin:0 0 8px 0; font-size:clamp(28px,5vw,40px)}
     .subtitle{color:var(--muted); max-width:75ch; margin:0}
     .section{margin-top:34px}
-    h2{font-size:22px; margin:0 0 14px 0}
+    h2{font-size:22px; margin:0 0 10px 0}
+    .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px}
 
-    /* Card grid layout */
-    .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; align-items:stretch}
-    .card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:20px; height:100%; display:flex; flex-direction:column}
-    .card *{margin:0}
-    .card > * + *{margin-top:10px}
+    .card{
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:16px;
+    }
 
     .small{font-size:14px; color:var(--muted)}
-    .tag{display:inline-block; font-size:12px; padding:4px 8px; border-radius:999px; background:rgba(134,176,255,.12); border:1px solid rgba(134,176,255,.35); color:#dfe9ff; margin-right:6px}
-    .cta{display:inline-block; margin-top:10px; padding:10px 14px; border-radius:10px; background:#233057; color:#eaf1ff; border:1px solid #2f4171}
-    .cta:hover{background:#2a3a6a}
-    footer{margin-top:28px; color:var(--muted); font-size:14px; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap}
+    .tag{
+      display:inline-block; font-size:12px; padding:4px 8px; border-radius:999px;
+      background:color-mix(in srgb, var(--brand) 18%, transparent);
+      border:1px solid color-mix(in srgb, var(--brand) 45%, transparent);
+      color:#dfe9ff; margin-right:6px
+    }
+
+    .cta{
+      display:inline-block; margin-top:10px; padding:10px 14px; border-radius:10px;
+      background:var(--brand); color:#0b1125; border:1px solid color-mix(in srgb, var(--brand) 55%, #0000);
+      font-weight:600;
+    }
+    .cta:hover{filter:brightness(1.05)}
+
     form{display:grid; gap:10px; margin-top:10px}
-    input,textarea{width:100%; padding:12px 12px; border-radius:10px; border:1px solid var(--line); background:#0f1330; color:var(--text)}
+    input,textarea{
+      width:100%; padding:12px 12px; border-radius:10px;
+      border:1px solid var(--line); background:var(--surface); color:var(--text)
+    }
+    input:focus,textarea:focus{outline:2px solid color-mix(in srgb, var(--brand) 55%, transparent); outline-offset:1px}
     textarea{min-height:120px; resize:vertical}
     button{cursor:pointer}
+
+    footer{
+      margin-top:28px; color:var(--muted); font-size:14px;
+      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap
+    }
     .note{font-size:12px; color:#94a0ce}
   </style>
 </head>
@@ -78,7 +109,7 @@
 
     <section id="about" class="section">
       <h2>About AlineaTech</h2>
-      <p>We partner with <strong>agriculture</strong>, <strong>industrial</strong>, and <strong>defense</strong> organizations that want to improve productivity and team satisfaction but struggle to adopt technology in ways aligned with workforce skills, preferences, and legal/ethical constraints. Our framework optimizes decision-making in human–machine teams, producing tangible benefits: choosing the right technologies, smoother adoption, higher engagement, and more effective investments. Unlike generic consulting or one-size-fits-all digital tools, we deeply integrate team contributions, context-specific constraints, and cost-benefit analysis into technology selection — ensuring operational wins and human alignment, grounded in academic research at leading institutes.</p>
+      <p>We partner with <strong>agriculture</strong>, <strong>industrial</strong>, and <strong>defense</strong> organizations that want to improve productivity and team satisfaction but struggle to adopt technology in ways aligned with workforce skills, preferences, and legal/ethical constraints. Our framework optimizes decision-making in human–machine teams, producing tangible benefits: choosing the right technologies, smoother adoption, higher engagement, and more effective investments. Unlike generic consulting or one-size-fits-all digital tools, we deeply integrate team contributions, context-specific constraints, and cost-benefit analysis into technology selection — ensuring operational wins and human alignment, grounded in academic research at leading institutes </p>
       <div class="cards" style="margin-top:10px">
         <div class="card">
           <span class="tag">Value</span>
@@ -94,18 +125,9 @@
     <section id="sectors" class="section">
       <h2>Sectors we serve</h2>
       <div class="cards">
-        <div class="card">
-          <strong>Industry</strong>
-          <span class="small">Automation, logistics, quality, continuous improvement.</span>
-        </div>
-        <div class="card">
-          <strong>Agriculture</strong>
-          <span class="small">Operational efficiency, worker enablement, safe/ethical tech adoption.</span>
-        </div>
-        <div class="card">
-          <strong>Defense</strong>
-          <span class="small">C2/ISR, human–AI teaming, responsible adoption with mission outcomes.</span>
-        </div>
+        <div class="card"><strong>Industry</strong><br><span class="small">Automation, logistics, quality, continuous improvement.</span></div>
+        <div class="card"><strong>Agriculture</strong><br><span class="small">Operational efficiency, worker enablement, safe/ethical tech adoption.</span></div>
+        <div class="card"><strong>Defense</strong><br><span class="small">C2/ISR, human–AI teaming, responsible adoption with mission outcomes.</span></div>
       </div>
     </section>
 
@@ -113,13 +135,13 @@
       <h2>Founders</h2>
       <div class="cards">
         <div class="card">
-          <strong>Miguel Centeio Jorge</strong>
+          <strong>Miguel Centeio Jorge</strong><br>
           <span class="small">Material Flow Specialist, Preh Group</span>
           <p class="small">Logistics specialist with a Master’s in Service Engineering & Management (FEUP) and a BSc in Business Administration (FEP). Early experience in Group M&A & Management Control at MDS Group. Integrates computer science, math, statistics, and process improvement—bringing a disciplined, high-energy approach from years of competitive sports.</p>
           <a class="small" href="https://www.linkedin.com/in/miguelcenteiojorge/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
         <div class="card">
-          <strong>Carolina Centeio Jorge</strong>
+          <strong>Carolina Centeio Jorge</strong><br>
           <span class="small">PhD Researcher, Interactive Intelligence — TU Delft</span>
           <p class="small">Researcher in human-AI teaming, behaviour modelling, and trust dynamics; programming across Python/R/Java/C++/JS. Leadership roles at TU Delft (PhD council) and visiting researcher at the University of Michigan. Focused on transparent, fair, and human-centric AI that understands teammates and acts accordingly.</p>
           <a class="small" href="https://www.linkedin.com/in/carolinacenteiojorge/" target="_blank" rel="noopener">LinkedIn</a>
@@ -135,7 +157,6 @@
           <p class="note">We collect only what’s required to respond to you. No third-party cookies.</p>
         </div>
         <div class="card">
-          <!-- Replace the action URL with your Formspree endpoint when you create it -->
           <form action="https://formspree.io/f/REPLACE_WITH_YOUR_ENDPOINT" method="POST">
             <input type="text" name="name" placeholder="Name" required>
             <input type="email" name="email" placeholder="Email" required>
@@ -156,8 +177,6 @@
       </span>
     </footer>
   </div>
-
-  <!-- (Optional) Plausible Analytics — uncomment and change domain to enable -->
-  <!-- <script defer data-domain="alineatech.pt" src="https://plausible.io/js/script.js"></script> -->
 </body>
 </html>
+
