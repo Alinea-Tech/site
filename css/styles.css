@@ -1,0 +1,179 @@
+/* ===== Color tokens (NO alphas, NO mixing) ===== */
+:root{
+  color-scheme: dark;
+  --bg:        #30226b;
+  --surface:   #34354d;
+  --line:      #737373;
+  --text:      #eddfd6;
+  --muted:     #b3b9d1;
+  --brand:     #b3b9d1;
+
+  --radius:16px;
+  --pad:clamp(14px,2.2vw,22px);
+  --max:980px;
+}
+
+/* ===== Base / reset ===== */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height:1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+img{max-width:100%; display:block}
+a{color:var(--brand); text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:var(--max); margin:0 auto; padding:calc(var(--pad)*2) var(--pad)}
+
+/* ===== Panels, hero, cards ===== */
+.panel{
+  background-color: var(--surface);
+  border:1px solid var(--line);
+  border-radius: var(--radius);
+}
+.hero{padding:36px}
+
+h1{margin:0 0 8px 0; font-size:clamp(28px,5vw,0px)}
+.subtitle{color:var(--muted); max-width:75ch; margin:0}
+
+.section{margin-top:34px}
+h2{font-size:22px; margin:0 0 10px 0}
+
+.cards{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap:16px;
+}
+.card{
+  background-color: var(--surface);
+  border:1px solid var(--line);
+  border-radius: var(--radius);
+  padding:16px;
+}
+
+.small{font-size:14px; color:var(--muted)}
+.tag{
+  display:inline-block; font-size:12px; padding:4px 8px; border-radius:999px;
+  background-color:#213055;
+  border:1px solid #3b548f;
+  color:#dfe9ff; margin-right:6px
+}
+
+/* ===== Buttons ===== */
+.cta{
+  display:inline-block; margin-top:10px; padding:10px 14px; border-radius:10px;
+  background-color: var(--brand); color:#0b1125; border:1px solid #b3b9d1; font-weight:600;
+  transition: filter .15s ease, transform .06s ease;
+}
+.cta:hover{filter: brightness(1.05)}
+.cta:active{transform: translateY(1px)}
+button{cursor:pointer}
+
+/* ===== Forms ===== */
+form{display:grid; gap:10px; margin-top:10px}
+input, textarea{
+  width:100%; padding:12px; border-radius:10px;
+  border:1px solid var(--line);
+  background-color: var(--surface);
+  color: var(--text);
+}
+input::placeholder, textarea::placeholder{color:#8e97be}
+input:focus, textarea:focus{
+  outline:2px solid #b3b9d1; outline-offset:1px;
+}
+/* Autofill fix */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus{
+  -webkit-text-fill-color: var(--text);
+  -webkit-box-shadow: 0 0 0px 1000px var(--surface) inset !important;
+  box-shadow: 0 0 0px 1000px var(--surface) inset !important;
+  caret-color: var(--text);
+}
+
+footer{
+  margin-top:28px; color:var(--muted); font-size:14px;
+  display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap
+}
+.note{font-size:12px; color:#94a0ce}
+
+/* ===== Header & Navigation ===== */
+.site-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.logo-container {
+  margin-bottom: 15px;
+}
+
+.logo {
+  height: 100px;
+  width: auto;
+  display: block;
+}
+
+/* Navigation links */
+.main-nav {
+  width: 100%;
+}
+
+.menu-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 5px;
+}
+
+.menu-links a {
+  color: var(--muted);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.menu-links a:hover {
+  color: var(--text);
+}
+
+/* Hamburger for mobile */
+.hamburger {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: var(--muted);
+}
+
+#menu-toggle {
+  display: none;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .menu-links {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 8px;
+  }
+  
+  #menu-toggle:checked + .hamburger + .menu-links {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+    margin: 0 auto 5px auto;
+  }
+}

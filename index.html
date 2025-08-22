@@ -1,163 +1,48 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>AlineaTech — Human‑machine collaboration made effective</title>
-<meta name="description" content="Framework for better human–AI decisions: right technology choices, smoother adoption, engaged teams, and effective investments." />
-<link rel="icon" href="favicon.png" />
-<meta property="og:title" content="AlineaTech — Human‑machine collaboration made effective" />
-<meta property="og:description" content="Research‑based framework to align people and technology for measurable operational gains." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.alineatech.pt/" />
-<style>
-  /* ===== Color tokens (NO alphas, NO mixing) ===== */
-  :root{
-    color-scheme: dark;
-    --bg:        #0f1220;  /* page background */
-    --surface:   #151930;  /* all panels, cards, inputs */
-    --line:      #2a2f55;  /* borders */
-    --text:      #eef1fb;  /* primary text */
-    --muted:     #aab2d6;  /* secondary text */
-    --brand:     #86b0ff;  /* brand accents & buttons */
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AlineaTech — Human‑machine collaboration made effective</title>
+  <meta name="description" content="Framework for better human–AI decisions: right technology choices, smoother adoption, engaged teams, and effective investments." />
+  <link rel="icon" href="favicon.png" />
+  <meta property="og:title" content="AlineaTech — Human‑machine collaboration made effective" />
+  <meta property="og:description" content="Research‑based framework to align people and technology for measurable operational gains." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.alineatech.pt/" />
+  <link href="css/styles.css" rel="stylesheet" />
 
-    --radius:16px;
-    --pad:clamp(14px,2.2vw,22px);
-    --max:980px;
-  }
-
-  /* ===== Base / reset ===== */
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    margin:0;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
-    background-color: var(--bg);   /* flat (no banding, no gradient) */
-    color: var(--text);
-    line-height:1.6;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  img{max-width:100%; display:block}
-  a{color:var(--brand); text-decoration:none}
-  a:hover{text-decoration:underline}
-
-  .wrap{max-width:var(--max); margin:0 auto; padding:calc(var(--pad)*2) var(--pad)}
-
-  header{
-    display:flex; align-items:center; justify-content:space-between;
-    gap:14px; margin-bottom:28px
-  }
-  .brand{display:flex; align-items:center; gap:10px}
-  .dot{
-    width:28px; height:28px; border-radius:50%;
-    /* simple, flat dot (no gradient) to avoid color fringing */
-    background-color: var(--brand);
-  }
-  .name{font-weight:700; letter-spacing:.2px}
-  nav a{color:var(--muted); margin-left:16px}
-  nav a:hover{color:var(--text)}
-
-  /* ===== Panels (hero, cards, inputs) share EXACT same colors ===== */
-  .panel{
-    background-color: var(--surface);
-    border:1px solid var(--line);
-    border-radius: var(--radius);
-  }
-  .hero{padding:36px}
-
-  h1{margin:0 0 8px 0; font-size:clamp(28px,5vw,40px)}
-  .subtitle{color:var(--muted); max-width:75ch; margin:0}
-
-  .section{margin-top:34px}
-  h2{font-size:22px; margin:0 0 10px 0}
-
-  .cards{
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap:16px;
-  }
-  .card{
-    background-color: var(--surface);
-    border:1px solid var(--line);
-    border-radius: var(--radius);
-    padding:16px;
-  }
-
-  .small{font-size:14px; color:var(--muted)}
-  .tag{
-    display:inline-block; font-size:12px; padding:4px 8px; border-radius:999px;
-    background-color:#213055;           /* fixed, opaque */
-    border:1px solid #3b548f;           /* fixed, opaque */
-    color:#dfe9ff; margin-right:6px
-  }
-
-  /* ===== Buttons ===== */
-  .cta{
-    display:inline-block; margin-top:10px; padding:10px 14px; border-radius:10px;
-    background-color: var(--brand); color:#0b1125; border:1px solid #6d9df5; font-weight:600;
-    transition: filter .15s ease, transform .06s ease;
-  }
-  .cta:hover{filter: brightness(1.05)}
-  .cta:active{transform: translateY(1px)}
-  button{cursor:pointer}
-
-  /* ===== Forms (neutralize Chrome autofill yellow) ===== */
-  form{display:grid; gap:10px; margin-top:10px}
-  input, textarea{
-    width:100%; padding:12px; border-radius:10px;
-    border:1px solid var(--line);
-    background-color: var(--surface);
-    color: var(--text);
-  }
-  input::placeholder, textarea::placeholder{color:#8e97be}
-  input:focus, textarea:focus{
-    outline:2px solid #6d9df5; outline-offset:1px;
-  }
-  /* Autofill fix (Chrome/WebKit) — forces surface color */
-  input:-webkit-autofill,
-  input:-webkit-autofill:hover,
-  input:-webkit-autofill:focus,
-  textarea:-webkit-autofill,
-  textarea:-webkit-autofill:hover,
-  textarea:-webkit-autofill:focus{
-    -webkit-text-fill-color: var(--text);
-    -webkit-box-shadow: 0 0 0px 1000px var(--surface) inset !important;
-    box-shadow: 0 0 0px 1000px var(--surface) inset !important;
-    caret-color: var(--text);
-  }
-
-  footer{
-    margin-top:28px; color:var(--muted); font-size:14px;
-    display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap
-  }
-  .note{font-size:12px; color:#94a0ce}
-</style>
 </head>
 <body>
   <div class="wrap">
-    <header>
-      <a class="brand" href="#top">
-        <span class="dot" aria-hidden="true"></span>
-        <span class="name">AlineaTech</span>
-      </a>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#sectors">Sectors</a>
-        <a href="#founders">Founders</a>
-        <a href="#contact">Contact</a>
+    <header class="site-header">
+      <div class="logo-container">
+        <a class="brand" href="#top">
+          <img src="assets/images/alinea_logo.png" alt="AlineaTech Logo" class="logo">
+        </a>
+      </div>
+      <nav class="main-nav">
+        <input type="checkbox" id="menu-toggle">
+        <label for="menu-toggle" class="hamburger">&#9776;</label>
+        <div class="menu-links">
+          <a href="#about">About</a>
+          <a href="#sectors">Sectors</a>
+          <a href="#founders">Founders</a>
+          <a href="#contact">Contact</a>
+        </div>
       </nav>
     </header>
 
     <section class="panel hero" id="top">
-      <h1>Human‑machine collaboration made effective</h1>
-      <p class="subtitle">We help organizations align people and technology for better decisions. Our research‑based framework guides what to adopt, how to implement, and why — integrating team input, operational constraints, and cost‑benefit analysis to deliver measurable gains.</p>
-      <a class="cta" href="#contact">Get in touch</a>
+      <h1>Planning effective human‑machine collaboration</h1>
+      <p class="subtitle">We help organizations align people and technology for better decisions. Our expertise guides organizations to acquire and adapt to new technologies or maximize the utility of those already acquired. We analyse your team characteristics, operational constraints, possible costs and benefits, and help you increase your gains within your human-machine collaboration possibilities.</p>
+      <!--<a class="cta" href="#contact">Get in touch</a>-->
+      <a class="cta" href="#founders" >Get in touch</a>
     </section>
 
     <section id="about" class="section">
       <h2>About AlineaTech</h2>
-      <p>We partner with <strong>agriculture</strong>, <strong>industrial</strong>, and <strong>defense</strong> organizations that want to improve productivity and team satisfaction but struggle to adopt technology in ways aligned with workforce skills, preferences, and legal/ethical constraints. Our framework optimizes decision‑making in human–machine teams, producing tangible benefits: choosing the right technologies, smoother adoption, higher engagement, and more effective investments. Unlike generic consulting or one‑size‑fits‑all digital tools, we deeply integrate team contributions, context‑specific constraints, and cost‑benefit analysis into technology selection — ensuring operational wins and human alignment, grounded in academic research at leading institutes.</p>
+      <p>We partner with <strong>agriculture</strong>, <strong>industrial</strong>, and <strong>defense</strong> organizations that want to improve productivity and team satisfaction but struggle to adopt technology in ways aligned with workforce skills, preferences, and legal/ethical constraints (e.g., AI Act). Our framework optimizes decision‑making in human–machine teams, producing tangible benefits: choosing the right technologies, smoother adoption, higher engagement, and more effective investments. Unlike generic consulting or one‑size‑fits‑all digital tools, we deeply integrate team contributions, context‑specific constraints, and cost‑benefit analysis into technology selection, ensuring operational wins and human alignment, grounded in academic research at leading institutes.</p>
       <div class="cards" style="margin-top:10px">
         <div class="card">
           <span class="tag">Value</span>
@@ -187,16 +72,20 @@
           <span class="small">Material Flow Specialist, Preh Group</span>
           <p class="small">Logistics specialist with a Master’s in Service Engineering & Management (FEUP) and a BSc in Business Administration (FEP). Early experience in Group M&A & Management Control at MDS Group. Integrates computer science, math, statistics, and process improvement—bringing a disciplined, high‑energy approach from years of competitive sports.</p>
           <a class="small" href="https://www.linkedin.com/in/miguelcenteiojorge/" target="_blank" rel="noopener">LinkedIn</a>
+          <span class="separator">|</span>
+          <a class="small" href="mailto:miguel@example.com">Email</a>
         </div>
         <div class="card">
           <strong>Carolina Centeio Jorge</strong><br>
           <span class="small">PhD Researcher, Interactive Intelligence — TU Delft</span>
-          <p class="small">Researcher in human‑AI teaming, behaviour modelling, and trust dynamics; programming across Python/R/Java/C++/JS. Leadership roles at TU Delft (PhD council) and visiting researcher at the University of Michigan. Focused on transparent, fair, and human‑centric AI that understands teammates and acts accordingly.</p>
+          <p class="small">MSc+BSc in Computer Science and Engineering (FEUP). Researcher in human‑AI teaming, behaviour modelling, and trust dynamics; programming across Python/R/JS. Leadership roles at TU Delft (PhD council) and visiting researcher at the University of Michigan (U.S.A.). Focused on transparent, fair, and human‑centric AI that understands teammates and acts accordingly.</p>
           <a class="small" href="https://www.linkedin.com/in/carolinacenteiojorge/" target="_blank" rel="noopener">LinkedIn</a>
+          <span class="separator">|</span>
+          <a class="small" href="mailto:miguel@example.com">Email</a>
         </div>
       </div>
     </section>
-
+<!-- 
     <section id="contact" class="section">
       <h2>Contact</h2>
       <div class="cards">
@@ -215,7 +104,7 @@
         </div>
       </div>
     </section>
-
+-->
     <footer>
       <span>© AlineaTech</span>
       <span class="small">
